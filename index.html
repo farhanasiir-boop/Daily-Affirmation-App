@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Daily Affirmation App</title>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+      background-color: rgb(159, 8, 111);
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      background-color: rgb(216, 224, 218);
+      padding: 25px;
+      width: 320px;
+      border-radius: 12px;
+      text-align: center;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    img {
+      width: 200px;
+      margin: 15px 0;
+    }
+
+    
+    .page {
+      display: none;
+    }
+
+
+    .active {
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- PAGE 1 -->
+  <div class="container page active" id="page1">
+    <h1>Daily Affirmation</h1>
+    <p>You are strong and capable 💪</p>
+    <button onclick="goToPage2()">Show</button>
+  </div>
+
+  <!-- PAGE 2 -->
+  <div class="container page" id="page2">
+    <h2>How are you feeling today? 😊</h2>
+
+    <button onclick="showResult('sad')">😔 Sad</button>
+    <button onclick="showResult('good')">🙂 Good</button>
+    <button onclick="showResult('happy')">😄 Happy</button>
+    <button onclick="showResult('tension')">😟 Tension</button>
+  </div>
+
+  <!-- PAGE 3 -->
+  <div class="container page" id="page3">
+    <h2 id="resultTitle"></h2>
+    <img id="resultImage" src="" alt="">
+    <p id="resultQuote"></p>
+
+    <button onclick="restart()">🔄 Start Again</button>
+  </div>
+
+  <script>
+    function goToPage2() {
+      document.getElementById("page1").classList.remove("active");
+      document.getElementById("page2").classList.add("active");
+    }
+
+    function showResult(mood) {
+      document.getElementById("page2").classList.remove("active");
+      document.getElementById("page3").classList.add("active");
+
+      const title = document.getElementById("resultTitle");
+      const image = document.getElementById("resultImage");
+      const quote = document.getElementById("resultQuote");
+
+      if (mood === "sad") {
+        title.innerText = "It's okay to feel sad 💙";
+        image.src = "image/Sad.jpg";
+        quote.innerText = "Tough times never last, but tough people do.";
+      }
+
+      if (mood === "good") {
+        title.innerText = "You're doing good 🙂";
+        image.src = "image/Good.jpg";
+        quote.innerText = "Small progress is still progress.";
+      }
+
+      if (mood === "happy") {
+        title.innerText = "Stay happy 😄";
+        image.src = "image/Happy.jpg";
+        quote.innerText = "Happiness looks good on you.";
+      }
+
+        if (mood === "tension") {
+    title.innerText = "Take a deep breath 😟";
+    image.src = "https://i.imgur.com/2nCt3Sbl.png";
+    quote.innerText = "Pause. Breathe. You are stronger than your stress.";
+}
+    }
+
+    function restart() {
+      document.getElementById("page3").classList.remove("active");
+      document.getElementById("page2").classList.add("active");
+    }
+  </script>
+
+</body>
+</html>
